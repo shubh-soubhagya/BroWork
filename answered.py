@@ -2,6 +2,7 @@ import csv
 import os
 from dotenv import load_dotenv
 from groq import Groq
+import re
 
 # Load API key from .env
 load_dotenv()
@@ -9,6 +10,15 @@ groq_api_key = os.getenv("GROQ_API_KEY")
 
 # Initialize Groq client
 client = Groq(api_key=groq_api_key)
+
+
+def clean_markdown(answer):
+    # Remove **bold**, *italics*, `code`, > quotes, and unnecessary markdown syntax
+    cleaned = re.sub(r'[*`>#]+', '', answer)
+    # Remove extra spaces and newlines
+    cleaned = re.sub(r'\n+', '\n', cleaned).strip()
+    return cleaned
+
 
 # Function to generate answer using Groq
 def get_answer_from_groq(question, model="compound-beta-mini"):
@@ -19,7 +29,9 @@ def get_answer_from_groq(question, model="compound-beta-mini"):
             {"role": "user", "content": f"{question}"}
         ]
     )
-    return response.choices[0].message.content.strip()
+    raw_answer = response.choices[0].message.content.strip()
+    cleaned_answer = clean_markdown(raw_answer)
+    return cleaned_answer
 
 # Load questions, generate answers, and overwrite same file
 def answer_questions_inplace(input_file="questions.csv"):
