@@ -34,11 +34,11 @@ def generate_qna_pdf(csv_file, output_pdf):
             a_text = f"Answer: {answer}"
 
             # Page break handling before writing question
-            if y_position < bottom_margin + 100:
+            if y_position < bottom_margin + 150:
                 c.showPage()
                 y_position = height - top_margin
                 c.setFont("Helvetica-Bold", 16)
-                c.drawString(left_margin, y_position, "Question & Answer Sheet (Continued)")
+                c.drawString(left_margin, y_position, "")
                 y_position -= 40
                 c.setFont("Helvetica", 12)
 
@@ -79,4 +79,4 @@ def split_text(text, usable_width, canvas_obj, font_name="Helvetica", font_size=
     return lines
 
 # Example usage
-generate_qna_pdf("questions.csv", "questions_answers.pdf")
+# generate_qna_pdf("questions.csv", "questions_answers.pdf")
