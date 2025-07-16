@@ -1,388 +1,261 @@
 questions_extracted,answers
-1. What is the difference between an array and a linked list?,"Arrays enable fast random access, while linked lists facilitate efficient insertions and deletions. Arrays store elements contiguously in memory, allowing for quick access via index. Linked lists, however, comprise nodes with references to subsequent nodes, making insertions and deletions easier, but random access slower. Choose arrays for applications requiring frequent random access and linked lists for those needing dynamic memory allocation. 
-
-In summary, 
-* Arrays: Fast random access, 
-* Linked Lists: Efficient insertions/deletions."
-2. Explain stack and queue data structures with real-life examples.,"**Stack and Queue Data Structures**
-
-### Stack
-
-A stack is a Last-In-First-Out (LIFO) data structure, where elements are added and removed from the top.
-
-**Real-life Example:** A stack of plates. When you add a plate, it goes on top. When you need a plate, you take one from the top.
-
-### Queue
-
-A queue is a First-In-First-Out (FIFO) data structure, where elements are added to the end and removed from the front.
-
-**Real-life Example:** A line of people waiting for a bus. People join the line at the end and board the bus from the front."
-3. What is the time complexity of inserting an element in the middle of a singly linked list?,"To insert an element in the middle of a singly linked list, we first need to find the middle node, which requires traversing the list, i.e., O(n) time. Then, we update the next pointers of adjacent nodes, which takes O(1) time. Since the traversal dominates, the overall time complexity is O(n). 
-
-Time complexity: O(n)"
-4. Convert the following infix expression to postfix: (A + B) * (C - D)?,"## Step 1: Understand the infix expression given
-The infix expression given is (A + B) * (C - D). This expression includes parentheses, addition, subtraction, and multiplication.
-
-## 2: Recall the rules for converting infix to postfix
-To convert infix to postfix, we follow these rules:
-- Operands are copied to the output.
-- Operators are popped from the stack and added to the output if they have higher or equal precedence than the current operator.
-- If the stack is empty or the top of the stack is a left parenthesis, a right parenthesis is popped and discarded.
-- At the end, any operators left on the stack are popped to the output.
-
-## 3: Apply the conversion rules
-The precedence of operators from highest to lowest is: ) (right parenthesis, * and / (same), + and - (same), and (left parenthesis.
-
-## 4: Convert the expression
-Start with an empty stack and output. Read the expression from left to right:
-- ( : Push to stack. Stack: [(]
-- A : Operand, add to output. Output: A, Stack: [(]
-- + : Operator, push to stack. Stack: [(, +]
-- B : Operand, add to output. Output: A B, Stack: [(, +]
-- ) : Pop operators and add to output until (. Stack: [], Output: A B +
-- * : Operator, push to stack. Stack: [*]
-- ( : Push to stack. Stack: [* , (]
-- C : Operand, add to output. Output: A B + C, Stack: [* , (]
-- - : Operator, push to stack. Stack: [* , (, -]
-- D : Operand, add to output. Output: A B + C D, Stack: [* , (, -]
-- ) : Pop operators and add to output until (. Stack: [*], Output: A B + C D -
-- End of expression: Pop * and add to output. Output: A B + C D - *
-
-The final answer is: A B + C D - *"
-5. Write a function to reverse a string using a stack.,"**Reversing a String using a Stack**
-=====================================
-
-Here is a Python function that uses a stack to reverse a string:
-
-```python
-def reverse_string(s):
-    """"""
-    Reverses a string using a stack.
-
-    Args:
-        s (str): The input string.
-
-    Returns:
-        str: The reversed string.
-    """"""
-    stack = []
+What is the difference between an array and a linked list?,"An array is a contiguous block of memory with elements of the same data type stored in adjacent locations. A linked list is a dynamic collection of nodes, each containing data and a reference (link) to the next node, allowing for efficient insertion and deletion but slower search times."
+Explain stack and queue data structures with real-life examples.,"Stack: A Last-In-First-Out (LIFO) data structure. Example: A stack of plates, where plates are added and removed from the top. 
+Queue: A First-In-First-Out (FIFO) data structure. Example: A line of people waiting for a bus, where people enter and exit in order."
+What is the time complexity of inserting an element in the middle of a singly linked list?,"Time Complexity of Inserting an Element in the Middle of a Singly Linked List
+The time complexity of inserting an element in the middle of a singly linked list is O(n), where n is the number of elements in the list.
+ Explanation
+To insert an element in the middle of a singly linked list, you need to:
+1. Find the middle element: You need to traverse the list to find the middle element. This requires iterating through half of the list, which takes O(n/2) = O(n) time.
+2. Update the next pointers: Once you find the middle element, you need to update the next pointers of the adjacent nodes to insert the new element. This takes O(1) time.
+Since the dominant operation is finding the middle element, the overall time complexity is O(n).
+ Example
+Suppose you have a singly linked list 1 - 2 - 3 - 4 - 5 and you want to insert an element 6 in the middle. You would need to traverse the list to find the middle element (e.g., 3), and then update the next pointers to insert 6. The resulting list would be 1 - 2 - 3 - 6 - 4 - 5.
+ Optimizations
+If you need to perform frequent insertions in the middle of the list, consider using a doubly linked list, which allows for faster insertion and deletion at any position, with a time complexity of O(1). Alternatively, you can use a balanced binary search tree, which provides efficient insertion and search operations.
+ Conclusion
+In summary, inserting an element in the middle of a singly linked list requires traversing the list to find the middle element, resulting in a time complexity of O(n)."
+Convert the following infix expression to postfix: (A + B) * (C - D),"Step 1: Understand the infix expression and the rules for conversion to postfix.
+The given infix expression is (A + B)  (C - D). To convert it to postfix, we need to follow the order of operations and use a stack to manage operators.
+ 2: Apply the conversion rules.
+First, we process the expressions within the parentheses: A + B and C - D. The postfix for A + B is A B +, and for C - D is C D -.
+ 3: Combine the postfix expressions with the operator outside the parentheses.
+Now, we multiply the two postfix expressions: (A B +)  (C D -). In postfix notation, this becomes A B + C D - .
+The final answer is: A B + C D -"
+Write a function to reverse a string using a stack.,"Reversing a String using a Stack
+ Function Description
+The function reverse_string_stack takes a string as input and returns the reversed string.
+ Code
+python
+class Stack:
+    def __init__(self):
+        self.stack = []
+    def push(self, char):
+        self.stack.append(char)
+    def pop(self):
+        if not self.is_empty():
+            return self.stack.pop()
+        return None
+    def is_empty(self):
+        return len(self.stack) == 0
+def reverse_string_stack(s):
+    stack = Stack()
     for char in s:
-        stack.append(char)
-    reversed_s = ''
-    while stack:
+        stack.push(char)
+    reversed_s = """"
+    while not stack.is_empty():
         reversed_s += stack.pop()
     return reversed_s
-
-# Example usage:
-print(reverse_string(""Hello World""))  # Output: dlroW olleH
-```
-
-**How it works:**
-
-1. Create an empty stack.
-2. Push each character of the input string onto the stack.
-3. Pop each character off the stack and append it to the result string.
-
-**Time complexity:** O(n), where n is the length of the input string.
-
-**Space complexity:** O(n), where n is the length of the input string."
-"6. Given a sorted array, write a function to perform binary search. What is its time complexity?","## Binary Search Function
-
-Here's a Python implementation of binary search:
-
-```python
+ Example usage:
+if __name__ == ""__main__"":
+    s = ""Hello, World!""
+    print(""Original String:"", s)
+    print(""Reversed String:"", reverse_string_stack(s))
+ Explanation
+1. Create a Stack class with push, pop, and is_empty methods.
+2. Iterate through the input string, pushing each character onto the stack.
+3. Pop characters off the stack, appending them to the reversed string.
+4. Return the reversed string.
+ Time Complexity
+ O(n) for pushing characters onto the stack
+ O(n) for popping characters off the stack
+ Total: O(n) + O(n) = O(2n) = O(n)"
+"Given a sorted array, write a function to perform binary search. What is its time complexity?","Binary Search Function
+python
 def binary_search(arr, target):
-    left, right = 0, len(arr) - 1
-    while left <= right:
-        mid = (left + right) // 2
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
         if arr[mid] == target:
             return mid
         elif arr[mid] < target:
-            left = mid + 1
+            low = mid + 1
         else:
-            right = mid - 1
+            high = mid - 1
     return -1
-
-# Example usage
-arr = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]
-target = 23
-result = binary_search(arr, target)
-print(f""Target {target} found at index {result}"") if result != -1 else print(""Target not found"")
-```
-
-## Time Complexity
-
-The time complexity of binary search is **O(log n)**, where n is the number of elements in the array. This is because with each iteration, the search space is halved."
-7. Explain the difference between BFS and DFS. Where would you use one over the other?,"**BFS (Breadth-First Search) vs DFS (Depth-First Search)**
-
-BFS and DFS are fundamental graph traversal algorithms.
-
-*   **BFS:**
-    *   Explores all nodes at a given depth before moving to the next depth level.
-    *   Uses a queue data structure.
-    *   Guaranteed to find the shortest path to the goal node if the graph is unweighted.
-*   **DFS:**
-    *   Explores as far as possible along each branch before backtracking.
-    *   Uses a stack data structure.
-
-**When to use each:**
-
-*   Use **BFS** for:
-    *   Finding the shortest path in an unweighted graph.
-    *   Web crawlers, social network analysis.
-*   Use **DFS** for:
-    *   Topological sorting, testing whether a graph is connected.
-    *   Finding a path between two nodes in a large graph."
-8. Implement a function to detect a cycle in a singly linked list.,"## Detecting a Cycle in a Singly Linked List
-
-### Problem Statement
-Implement a function to detect a cycle in a singly linked list.
-
-### Solution
-
-```python
+Time Complexity: O(log n)"
+Explain the difference between BFS and DFS. Where would you use one over the other?,"BFS (Breadth-First Search) vs DFS (Depth-First Search)
+BFS explores a graph level by level, starting from a given node, using a queue to keep track of nodes to visit. DFS explores a graph by diving deeper into a node's neighbors before backtracking.
+Use cases:
+ BFS: Finding shortest paths, minimum spanning trees, or traversing graphs with a large number of nodes and relatively few edges.
+ DFS: Topological sorting, finding strongly connected components, or searching graphs with a large number of edges and relatively few nodes."
+Implement a function to detect a cycle in a singly linked list.,"Cycle Detection in a Singly Linked List
+ Problem Description
+Detecting a cycle in a singly linked list involves determining if there is a node that points back to a previous node, creating a loop.
+ Solution
+We can use Floyd's Tortoise and Hare algorithm, also known as the ""slow and fast runner"" technique.
+ Code
+python
 class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
-
-def detect_cycle(head):
+def has_cycle(head):
     """"""
-    Detects a cycle in a singly linked list.
-
+    Detects if a cycle exists in a singly linked list.
     Args:
     head (ListNode): The head of the linked list.
-
     Returns:
-    bool: True if a cycle is detected, False otherwise.
+    bool: True if a cycle exists, False otherwise.
     """"""
-    if not head or not head.next:
+    if head is None:
         return False
-
-    tortoise = head
-    hare = head.next
-
-    while tortoise != hare:
-        if not hare or not hare.next:
-            return False
-
-        tortoise = tortoise.next  # Move one step at a time
-        hare = hare.next.next  # Move two steps at a time
-
-    return True
-
-# Example usage:
-if __name__ == ""__main__"":
-    # Create a linked list with a cycle
-    node1 = ListNode(1)
-    node2 = ListNode(2)
-    node3 = ListNode(3)
-    node4 = ListNode(4)
-
-    node1.next = node2
-    node2.next = node3
-    node3.next = node4
-    node4.next = node2  # Create a cycle
-
-    print(""Cycle detected"" if detect_cycle(node1) else ""No cycle"")
-```
-
-### Explanation
-
-*   We use Floyd's Tortoise and Hare algorithm, also known as the ""slow and fast runner"" technique.
-*   Initialize two pointers, `tortoise` and `hare`, to the head of the linked list.
-*   Move `tortoise` one step at a time and `hare` two steps at a time.
-*   If there is a cycle, `tortoise` and `hare` will eventually meet at some node within the cycle.
-*   If there is no cycle, `hare` will reach the end of the linked list.
-
-### Time Complexity
-
-*   The time complexity of this solution is O(n), where n is the number of nodes in the linked list.
-
-### Space Complexity
-
-*   The space complexity is O(1), as we only use a constant amount of space to store the `tortoise` and `hare` pointers."
-9. What is a hash table? Explain how collision handling works.,"**Hash Table Overview**
-
-A hash table (also known as a hash map) is a data structure that stores key-value pairs in an array using a hash function to map keys to indices.
-
-**How it Works**
-
-1. **Key Input**: A key is input into the hash function.
-2. **Hash Function**: The hash function generates an index based on the key.
-3. **Index Mapping**: The key-value pair is stored at the generated index.
-
-**Collision Handling**
-
-When two keys hash to the same index, a collision occurs. There are two primary collision handling techniques:
-
-1. **Chaining**: Store colliding key-value pairs in a linked list at the hashed index.
-2. **Open Addressing**: Probe other indices in the array to find an empty slot to store the key-value pair.
-
-Both techniques ensure efficient storage and retrieval of key-value pairs."
-"10. Given an array of integers, find the first non-repeating element.","## Solution
-To find the first non-repeating element in an array of integers, we can use a hash map to count occurrences.
-
-1. **Count occurrences**: Iterate through the array, storing counts in a hash map.
-2. **Find first non-repeating element**: Iterate through the array again. Return the first element with a count of 1.
-
-## Code (Python)
-```python
-def first_non_repeating(arr):
-    count_map = {}
-    for num in arr:
-        if num in count_map:
-            count_map[num] += 1
-        else:
-            count_map[num] = 1
-    for num in arr:
-        if count_map[num] == 1:
-            return num
-    return None
-```
-## Example Use Case
-Input: `[2, 3, 5, 4, 5, 3, 7]`
-Output: `2`"
-11. What are the advantages of using a trie over a hash map for storing a dictionary of words?,"## Advantages of Trie over Hash Map
-
-The advantages of using a trie (prefix tree) over a hash map for storing a dictionary of words are:
-
-* **Autocomplete and prefix matching**: Tries allow for efficient retrieval of words with a given prefix.
-* **Space efficiency**: Tries can store multiple words with common prefixes using a single node.
-* **Fast lookup and insertion**: Tries have an average time complexity of O(m), where m is the length of the word.
-
-Overall, tries are suitable for tasks like autocomplete, spell-checking, and validating word existence. Hash maps are better for general key-value storage."
-12. Design and implement an LRU (Least Recently Used) cache.,"## LRU Cache Design and Implementation
-
-### Overview
-
-The LRU cache is a data structure that stores a limited number of items, discarding the least recently used items when the cache is full.
-
-### Implementation
-
-```python
+    slow = head
+    fast = head
+    while fast is not None and fast.next is not None:
+        slow = slow.next   Move one step at a time
+        fast = fast.next.next   Move two steps at a time
+        if slow == fast:
+            return True   Cycle detected
+    return False   No cycle detected
+ Explanation
+   We initialize two pointers, slow and fast, to the head of the linked list.
+   The slow pointer moves one step at a time, while the fast pointer moves two steps at a time.
+   If there is a cycle, the fast pointer will eventually catch up to the slow pointer.
+   If there is no cycle, the fast pointer will reach the end of the linked list.
+ Example Usage
+python
+ Create a linked list with a cycle
+node1 = ListNode(1)
+node2 = ListNode(2)
+node3 = ListNode(3)
+node4 = ListNode(4)
+node1.next = node2
+node2.next = node3
+node3.next = node4
+node4.next = node2   Create a cycle
+print(has_cycle(node1))   Output: True
+ Create a linked list without a cycle
+node5 = ListNode(5)
+node6 = ListNode(6)
+node7 = ListNode(7)
+node5.next = node6
+node6.next = node7
+print(has_cycle(node5))   Output: False"
+What is a hash table? Explain how collision handling works.,A hash table is a data structure mapping keys to values using a hash function. Collision handling occurs when two keys hash to the same index; methods like chaining (linked lists) or open addressing (probing) resolve collisions efficiently.
+"Given an array of integers, find the first non-repeating element.","To find the first non-repeating element, create a hashmap to store element frequencies. Iterate through the array, updating the hashmap. Then, iterate again, returning the first element with a frequency of 1. If no such element exists, return null or a specific value. This approach has a time complexity of O(n), where n is the array length."
+What are the advantages of using a trie over a hash map for storing a dictionary of words?,"Tries have several advantages over hash maps for storing dictionaries of words. They are more memory-efficient, especially for large dictionaries with common prefixes. Tries also enable fast prefix matching and autocomplete functionality. Additionally, tries can store additional data, such as word frequencies or meanings, and can be used for tasks like spell-checking and word validation. Overall, tries offer a space-efficient and functionally rich solution for storing and querying dictionaries of words."
+Design and implement an LRU (Least Recently Used) cache.,"LRU Cache Implementation
+ Overview
+The LRU cache is a data structure that stores a limited number of items, discarding the least recently used item when the cache is full.
+ Design
+   The cache has a fixed capacity.
+   It uses an ordered dictionary to store key-value pairs.
+   The ordered dictionary maintains the order in which keys were last accessed.
+ Implementation
+python
 from collections import OrderedDict
-
 class LRUCache:
     def __init__(self, capacity: int):
         """"""
         Initialize the LRU cache with a given capacity.
-
-        :param capacity: The maximum number of items in the cache.
+        Args:
+        capacity (int): The maximum number of items the cache can hold.
         """"""
         self.capacity = capacity
         self.cache = OrderedDict()
-
-    def get(self, key: int) -> int:
+    def get(self, key: int) - int:
         """"""
         Retrieve the value associated with a key from the cache.
-
-        :param key: The key to look up in the cache.
-        :return: The value associated with the key, or -1 if not found.
+        Args:
+        key (int): The key to look up.
+        Returns:
+        int: The value associated with the key if it exists, -1 otherwise.
         """"""
         if key in self.cache:
             value = self.cache.pop(key)
-            self.cache[key] = value  # Move to end to mark as recently used
+            self.cache[key] = value   Move key to end to mark as recently used
             return value
         return -1
-
-    def put(self, key: int, value: int) -> None:
+    def put(self, key: int, value: int) - None:
         """"""
         Add or update a key-value pair in the cache.
-
-        :param key: The key to add or update.
-        :param value: The value associated with the key.
+        Args:
+        key (int): The key to add or update.
+        value (int): The value associated with the key.
         """"""
         if key in self.cache:
             self.cache.pop(key)
-        elif len(self.cache) >= self.capacity:
-            self.cache.popitem(last=False)  # Remove oldest item
+        elif len(self.cache) = self.capacity:
+            self.cache.popitem(last=False)   Remove the least recently used item
         self.cache[key] = value
-
-# Example usage
+ Example usage
 if __name__ == ""__main__"":
-    cache = LRUCache(2)  # Create an LRU cache with capacity 2
-
+    cache = LRUCache(2)   Create an LRU cache with a capacity of 2
     cache.put(1, 1)
     cache.put(2, 2)
-    print(cache.get(1))  # returns 1
-    cache.put(3, 3)  # evicts key 2
-    print(cache.get(2))  # returns -1 (not found)
-    cache.put(4, 4)  # evicts key 1
-    print(cache.get(1))  # returns -1 (not found)
-    print(cache.get(3))  # returns 3
-    print(cache.get(4))  # returns 4
-```
-
-### Explanation
-
-*   The `LRUCache` class uses an `OrderedDict` to store key-value pairs, which maintains the order of insertion and allows efficient removal of the oldest item.
-*   The `get` method checks if a key is in the cache, and if so, moves it to the end to mark it as recently used. If not found, it returns -1.
-*   The `put` method adds or updates a key-value pair in the cache. If the key already exists, it updates the value and moves the key to the end. If the cache is full, it removes the oldest item before adding the new key-value pair."
-"13. Given an undirected graph, check whether it contains a cycle using DFS.","## Step 1: Understand the Problem
-To check if an undirected graph contains a cycle using Depth-First Search (DFS), we need to traverse the graph and detect if there's a back edge, which indicates a cycle.
-
-## Step 2: Recall DFS Traversal
-In DFS, we visit a node and then visit all of its neighbors. If we encounter a neighbor that has already been visited and it's not the parent of the current node, then there's a cycle.
-
-## Step 3: Implement DFS for Cycle Detection
-We will use a recursive DFS approach. Keep track of visited nodes and the parent of each node.
-
-## Step 4: Algorithm
-- Initialize a set to keep track of visited nodes.
-- For each unvisited node, call the DFS function.
-- In the DFS function, mark the current node as visited.
-- For each neighbor of the current node:
-  - If the neighbor is not visited, recursively call DFS on it with the current node as its parent.
-  - If the neighbor is visited and it's not the parent, return True (cycle detected).
-
-## Step 5: Example Code
-```python
-def has_cycle(graph):
+    print(cache.get(1))   Returns 1
+    cache.put(3, 3)   Evicts key 2
+    print(cache.get(2))   Returns -1 (not found)
+    cache.put(4, 4)   Evicts key 1
+    print(cache.get(1))   Returns -1 (not found)
+    print(cache.get(3))   Returns 3
+    print(cache.get(4))   Returns 4
+ Explanation
+   The LRUCache class is initialized with a given capacity.
+   The get method retrieves a value from the cache and updates the key's position to mark it as recently used.
+   The put method adds or updates a key-value pair in the cache, evicting the least recently used item if the cache is full.
+ Time Complexity
+   get: O(1)
+   put: O(1)
+ Space Complexity
+   O(capacity) for storing key-value pairs in the cache."
+"Given an undirected graph, check whether it contains a cycle using DFS.","Cycle Detection in Undirected Graph using DFS
+To detect a cycle in an undirected graph using DFS, we can utilize a visited set to track visited nodes and a recursion stack to monitor nodes in the current DFS path.
+ Approach
+1.  Create a visited set to store visited nodes.
+2.  Iterate through all nodes in the graph. For each unvisited node, perform DFS.
+3.  During DFS, mark the current node as visited and add it to the recursion stack.
+4.  For each neighbor of the current node:
+       If the neighbor is not visited, recursively perform DFS on it.
+       If the neighbor is in the recursion stack, a cycle is detected.
+However, undirected graphs cannot have cycles in the traditional sense as used for directed graphs because an edge between two nodes can be traversed in both directions. But if we consider a cycle as a path that starts and ends at the same node and passes through at least one edge more than once, we can modify our approach.
+ Code
+python
+def is_cyclic(graph):
     visited = set()
+    def dfs(node, parent):
+        visited.add(node)
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                if dfs(neighbor, node):
+                    return True
+            elif neighbor != parent:
+                return True
+        return False
     for node in graph:
         if node not in visited:
-            if dfs(graph, node, visited, None):
+            if dfs(node, None):
                 return True
     return False
-
-def dfs(graph, node, visited, parent):
-    visited.add(node)
-    for neighbor in graph[node]:
-        if neighbor not in visited:
-            if dfs(graph, neighbor, visited, node):
-                return True
-        elif neighbor != parent:
-            return True
-    return False
-
-# Example graph
+ Example usage
 graph = {
     'A': ['B', 'C'],
-    'B': ['D', 'E'],
-    'C': ['F'],
-    'D': [],
+    'B': ['A', 'D'],
+    'C': ['A', 'F'],
+    'D': ['B'],
     'E': ['F'],
-    'F': []
+    'F': ['C', 'E']
 }
-
-print(has_cycle(graph))  # Output: True
-```
-
-## Step 6: Explanation
-The provided code defines two functions: `has_cycle` and `dfs`. The `has_cycle` function iterates over all nodes in the graph and calls `dfs` for unvisited nodes. The `dfs` function checks for cycles by tracking visited nodes and their parents.
-
-The final answer is: $\boxed{True}$"
-14. Explain time and space complexity of the merge sort algorithm. Implement it.,"## Time and Space Complexity of Merge Sort
-
-*   **Time Complexity:** The time complexity of the merge sort algorithm is **O(n log n)**, where n is the number of elements in the array. This is because the algorithm divides the array into two halves recursively until each subarray contains only one element (log n), and then merges the subarrays back together in sorted order (n).
-*   **Space Complexity:** The space complexity of the merge sort algorithm is **O(n)**, as it requires additional space to store the left and right subarrays during the merge process.
-
-## Implementation of Merge Sort
-
-Here is a Python implementation of the merge sort algorithm:
-
-```python
+print(is_cyclic(graph))   Output: False
+cyclic_graph = {
+    'A': ['B'],
+    'B': ['C'],
+    'C': ['A']
+}
+print(is_cyclic(cyclic_graph))   Output: True
+ Explanation
+   The provided code defines a function is_cyclic to check for cycles in an undirected graph represented as an adjacency list.
+   It uses a recursive DFS approach with a visited set to track visited nodes.
+   For each node, it checks all neighbors. If a neighbor is unvisited, DFS is performed on it. If the neighbor is visited and not the parent node, a cycle is detected.
+The code effectively identifies cycles in undirected graphs by adapting the DFS strategy to consider the parent node during traversal."
+Explain time and space complexity of the merge sort algorithm. Implement it.,"Time Complexity: 
+- Best-case: O(n log n)
+- Average-case: O(n log n)
+- Worst-case: O(n log n)
+Space Complexity: O(n)
+ Implementation
+python
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -390,7 +263,6 @@ def merge_sort(arr):
     left = merge_sort(arr[:mid])
     right = merge_sort(arr[mid:])
     return merge(left, right)
-
 def merge(left, right):
     result = []
     while left and right:
@@ -401,21 +273,25 @@ def merge(left, right):
     result.extend(left)
     result.extend(right)
     return result
-
-# Example usage
-arr = [5, 2, 8, 1, 9]
-sorted_arr = merge_sort(arr)
-print(sorted_arr)  # Output: [1, 2, 5, 8, 9]
-```
-
-This implementation recursively divides the input array into two halves until each subarray contains only one element, and then merges the subarrays back together in sorted order using the `merge` function. The `merge` function compares elements from the left and right subarrays and adds the smaller element to the result array. Finally, it appends any remaining elements from the left and right subarrays to the result array."
-15. You are given an array representing daily temperatures. Return an array that tells you how many days you’d have to wait until a warmer temperature.,"The given Python function `dailyTemperatures` solves this problem. It uses a stack to keep track of indices of temperatures. 
-
-- Iterate through temperatures, 
-- If stack and current temperature > temperature at top of stack, 
-  - Pop stack, calculate days to wait, and update result array. 
-- Push current index to stack.
-
-For input `[73,74,75,71,69,72,76,73]`, 
-the output is `[1,1,4,2,1,1,0,0]`, 
-indicating the number of days until a warmer temperature for each day."
+ Example usage
+arr = [5, 2, 8, 3, 1, 4, 6, 7]
+print(merge_sort(arr))   Output: [1, 2, 3, 4, 5, 6, 7, 8]
+ Explanation
+   The merge_sort function recursively divides the input array into two halves until each subarray contains only one element.
+   The merge function combines two sorted subarrays into a single sorted array.
+   The time complexity is O(n log n) because the array is divided in half at each level of recursion (log n), and then merged back together (n).
+   The space complexity is O(n) due to the auxiliary space required for the merge function."
+You are given an array representing daily temperatures. Return an array that tells you how many days you’d have to wait until a warmer temperature.,"The provided Python function dailyTemperatures solves this problem. It uses a stack to keep track of indices of temperatures. For each temperature, it pops indices from the stack if the current temperature is greater, calculates the waiting days, and pushes the current index. The function returns an array where each element represents the number of days until a warmer temperature.
+python
+def dailyTemperatures(temperatures):
+    stack = []
+    result = [0]  len(temperatures)
+    for i, temp in enumerate(temperatures):
+        while stack and temperatures[stack[-1]] < temp:
+            idx = stack.pop()
+            result[idx] = i - idx
+        stack.append(i)
+    return result
+print(dailyTemperatures([73,74,75,71,69,72,76,73]))
+Output: [1, 1, 4, 2, 1, 1, 0, 0]
+This solution has a time complexity of O(n), where n is the number of days (length of the input array)."

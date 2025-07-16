@@ -60,7 +60,8 @@ def extract_questions(text):
             assistant,
             message=f"""Extract all possible questions from the following academic text.
 Return only the list of questions in a clean format. Just give questions nothing else. no introductory line should be present like : 
-"Here is the list of questions extracted from the text in a clean format:" or anything. Directly with questions extracted.
+"Here is the list of questions extracted from the text in a clean format:" or anything. Directly with questions extracted. Dont include the question counting number0s or alphabets like 
+(i,ii,ii,iv,a,b,c,etc)
 
 Text:
 {text}
