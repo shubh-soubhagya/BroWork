@@ -23,6 +23,5 @@ def save_questions_to_csv(questions_extracted, output_file="questions.csv"):
         for question in question_list:
             writer.writerow([question])
 
-
-save_questions_to_csv(questions_extracted)
+# save_questions_to_csv(questions_extracted)
 
