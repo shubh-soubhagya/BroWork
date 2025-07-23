@@ -9,8 +9,7 @@ import csv
 
 def save_questions_to_csv(questions_extracted, output_file="questions.csv"):
     """
-    Takes a multi-line string of questions and saves each question as a row in a CSV file.
-    
+    Takes a multi-line string of questions and saves each question as a row in a CSV file. 
     Parameters:
     - questions_extracted (str): String with questions separated by newlines.
     - output_file (str): File name to save the questions to.

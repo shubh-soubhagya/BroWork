@@ -15,4 +15,4 @@ def extract_text_from_pdf(pdf_path):
 #     print("\n📝 Preview:\n")
 #     print(text[:1000])  # print first 1000 characters for preview
 
-pdf_text = extract_text_from_pdf("Question.pdf")
+# pdf_text = extract_text_from_pdf("Question.pdf")
