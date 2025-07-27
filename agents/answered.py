@@ -15,17 +15,6 @@ def clean_markdown(answer):
     cleaned = re.sub(r'\n+', '\n', cleaned).strip()
     return cleaned
 
-# def get_answer_from_groq(question, word_limit, model="compound-beta-mini"):
-#     response = client.chat.completions.create(
-#         model=model,
-#         messages=[
-#             {"role": "system", "content": f"You are a helpful technical assistant. Answer concisely and clearly in {word_limit} words."},
-#             {"role": "user", "content": question}
-#         ]
-#     )
-#     raw_answer = response.choices[0].message.content.strip()
-#     return clean_markdown(raw_answer)
-
 def get_answer_from_groq(question, word_limit, model="compound-beta-mini"):
     try:
         response = client.chat.completions.create(
