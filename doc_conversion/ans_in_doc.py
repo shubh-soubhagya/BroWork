@@ -78,5 +78,4 @@ def split_text(text, usable_width, canvas_obj, font_name="Helvetica", font_size=
         lines.append(line)
     return lines
 
-# Example usage
-# generate_qna_pdf("questions.csv", "questions_answers.pdf")
+
