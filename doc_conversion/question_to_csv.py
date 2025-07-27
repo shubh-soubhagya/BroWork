@@ -22,5 +22,5 @@ def save_questions_to_csv(questions_extracted, output_file=r"data\questions.csv"
         for question in question_list:
             writer.writerow([question])
 
-# save_questions_to_csv(questions_extracted)
+
 
