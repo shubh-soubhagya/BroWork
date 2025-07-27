@@ -71,9 +71,3 @@ Text:
 
     return assistant.last_reply  # Return extracted result
 
-# Step 5: Entry point
-if __name__ == "__main__":
-    pdf_text = extract_text_from_pdf("Question.pdf")  # You can use this instead of load_text()
-    questions_extracted = extract_questions(pdf_text)
-    print("\n✅ Questions Extracted:\n")
-    print(questions_extracted)
