@@ -16,7 +16,7 @@ load_dotenv()
 groq_api_key = os.getenv("GROQ_API_KEY")
 
 # Step 2: Groq LLM wrapper
-def run_groq(prompt, model="llama3-70b-8192"):
+def run_groq(prompt, model="llama-3.3-70b-versatile"):
     client = Groq(api_key=groq_api_key)
     response = client.chat.completions.create(
         model=model,
